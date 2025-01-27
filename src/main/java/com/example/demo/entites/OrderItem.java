@@ -1,6 +1,7 @@
 package com.example.demo.entites;
 
 import com.example.demo.entites.pk.OrderItemPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -16,7 +17,7 @@ public class OrderItem implements Serializable {
 
 
     @EmbeddedId
-    private OrderItemPK id;
+    private OrderItemPK id = new OrderItemPK();
 
     private Integer quantity;
 
@@ -54,6 +55,7 @@ public class OrderItem implements Serializable {
         return id.getOrder();
     }
 
+    @JsonIgnore
     public void setOrder(Order order){
         id.setOrder(order);
     }
